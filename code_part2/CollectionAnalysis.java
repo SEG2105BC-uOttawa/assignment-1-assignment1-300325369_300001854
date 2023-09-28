@@ -1,30 +1,122 @@
-package code_part2;
-import java.util.Random;
-import java.util.ArrayList;
-import java.util.Vector;
-import java.util.Collection;
+import java.util.*;
 
-
+/*
+ * This program compares the time taken to construct a list, iterate through the list and sum the elements
+ * between ArrayList, Vector and ordinary array
+ * 
+ * Part (a) compares the time taken to construct the list
+ * Part (b) compares the time taken to iterate through the list and sum the elements
+ */
 public class CollectionAnalysis {
 
+    /*
+     * Main method to run part a and b 
+     * 
+     */
     public static void main(String[] args) {
-        ArrayList<Integer> list = new ArrayList<>();
-        Vector<Integer> vector = new Vector<>();
+        int n = 100000000; //number of elements in the list (can affect the time taken to run the program)
+
+        // (a)
+        List<Integer> arrayList = new ArrayList<>(); // instantiate ArrayList
+        long arrayListConstructionTime = constructList(arrayList, n); // call constructList method
+
+        List<Integer> vector = new Vector<>(); // instantiate Vector
+        long vectorConstructionTime = constructList(vector, n); // call constructList method
+
+        int[] array = new int[n]; // instantiate ordinary array
+        long arrayConstructionTime = constructArray(array, n); // call constructArray method
+
+        // Print out the time taken to construct the list
+        System.out.println("ArrayList Construction Time: " + arrayListConstructionTime + " ms");
+        System.out.println("Vector Construction Time: " + vectorConstructionTime + " ms");
+        System.out.println("Ordinary Array Construction Time: " + arrayConstructionTime + " ms");
+
+        // Part (b)
+        long arrayListIterationTime = iterateAndSumArrayList(arrayList);
+        long vectorIterationTime = iterateAndSumVector(vector); 
+        long arrayIterationTime = loopAndSumArray(array);
         
-        fillCollection(list, "ArrayList");
-        fillCollection(vector, "Vector");
+        // Print out the time taken to iterate through the list and sum the elements
+        System.out.println("ArrayList Iteration Time: " + arrayListIterationTime + " ms");
+        System.out.println("Vector Iteration Time: " + vectorIterationTime + " ms");
+        System.out.println("Array Iteration Time: " + arrayIterationTime + " ms");
+
     }
 
-    public static void  fillCollection( Collection<Integer> collection, String collectionName) {
-        Random rand = new Random();
-        long startTime = System.currentTimeMillis();
-        long endTime;
-        do {
-            collection.add(rand.nextInt(10)); 
-            endTime = System.currentTimeMillis();
-        } while (endTime - startTime < 10000); // Continue until at least 10 seconds have passed
-        
-        System.out.println("Execution time to fill " + collectionName + ": " + (endTime - startTime));
-        System.out.println("Size of " + collectionName + ": " + collection.size());
+    /*
+     * Populates the list with random integers from 0 to 9 (for ArrayList and Vector)
+     * @param list to be populated
+     * @param n the number of elements to be added to the list
+     * @return the time taken to populate the list
+     */
+    private static long constructList (List<Integer> list, int n) { //method for both ArrayList and Vector
+        Random random = new Random(); 
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < n; i++) {
+            list.add(random.nextInt(10));
+        }
+        return System.currentTimeMillis() - start; //returns the time taken to populate the list
+    }
+
+    /*
+     * Populates the array with random integers from 0 to 9
+     * @param array to be populated
+     * @param n the number of elements to be added to the array
+     * @return the time taken to populate the array
+     */
+    private static long constructArray(int[] array, int n) { //Method for ordinary array
+        Random random = new Random();
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < n; i++) {
+            array[i] = random.nextInt(10);
+        }
+        return System.currentTimeMillis() - start; //returns the time taken to populate the array
+    }
+
+    /*
+     * Iterates through ArrayList and sums the elements
+     * @param list to be iterated through
+     * @return the time taken to iterate through the ArrayList and sum the elements
+     */
+    private static long iterateAndSumArrayList(List<Integer> list) { 
+        long start = System.currentTimeMillis();
+        long sum = 0;
+        Iterator<Integer> iterator = list.iterator(); 
+        while (iterator.hasNext()) {
+            sum += iterator.next();
+        }
+        System.out.println("ArrayList Sum: " + sum);
+        return System.currentTimeMillis() - start;
+    }
+
+    /*
+     * Iterates through Vector and sums the elements
+     * @param vector to be iterated through
+     * @return the time taken to iterate through the Vector and sum the elements
+     */
+    private static long iterateAndSumVector(List<Integer> vector) {
+        long start = System.currentTimeMillis();
+        long sum = 0;
+        Iterator<Integer> iterator = vector.iterator();
+        while (iterator.hasNext()) {
+            sum += iterator.next();
+        }
+        System.out.println("Vector Sum: " + sum);
+        return System.currentTimeMillis() - start;
+    }
+
+    /*
+     * Loop through array and sums the elements
+     * @param array to be iterated through
+     * @return the time taken to loop through the array and sum the elements
+     */
+    private static long loopAndSumArray(int[] array) {
+        long start = System.currentTimeMillis();
+        long sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
+        } 
+        System.out.println("Array Sum: " + sum);
+        return System.currentTimeMillis() - start;
     }
 }
