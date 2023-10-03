@@ -26,20 +26,29 @@ public class CollectionAnalysis {
         int[] array = new int[n]; // instantiate ordinary array
         long arrayConstructionTime = constructArray(array, n); // call constructArray method
 
-        // Print out the time taken to construct the list
-        System.out.println("ArrayList Construction Time: " + arrayListConstructionTime + " ms");
-        System.out.println("Vector Construction Time: " + vectorConstructionTime + " ms");
-        System.out.println("Ordinary Array Construction Time: " + arrayConstructionTime + " ms");
-
+        
         // Part (b)
         long arrayListIterationTime = iterateAndSumArrayList(arrayList);
         long vectorIterationTime = iterateAndSumVector(vector); 
         long arrayIterationTime = loopAndSumArray(array);
         
-        // Print out the time taken to iterate through the list and sum the elements
-        System.out.println("ArrayList Iteration Time: " + arrayListIterationTime + " ms");
-        System.out.println("Vector Iteration Time: " + vectorIterationTime + " ms");
-        System.out.println("Array Iteration Time: " + arrayIterationTime + " ms");
+       
+        System.out.println("---------------------------------------------------------------------------------------");
+        System.out.println("| Collection Type     | Construction Time (ms) | Iteration Time (ms) |     Sum     |");
+        System.out.println("---------------------------------------------------------------------------------------");
+
+        // Print ArrayList data
+        System.out.printf("| %-19s | %21d | %19d | %11d |\n", "ArrayList", arrayListConstructionTime, arrayListIterationTime, iterateAndSumArrayList(arrayList));
+        System.out.println("---------------------------------------------------------------------------------------");
+
+        // Print Vector data
+        System.out.printf("| %-19s | %21d | %19d | %11d |\n", "Vector", vectorConstructionTime, vectorIterationTime, iterateAndSumVector(vector));
+        System.out.println("---------------------------------------------------------------------------------------");
+
+        // Print Array data
+        System.out.printf("| %-19s | %21d | %19d | %11d |\n", "Ordinary Array", arrayConstructionTime, arrayIterationTime, loopAndSumArray(array));
+        System.out.println("---------------------------------------------------------------------------------------");
+
 
     }
 
@@ -119,4 +128,6 @@ public class CollectionAnalysis {
         System.out.println("Array Sum: " + sum);
         return System.currentTimeMillis() - start;
     }
+
+    
 }
