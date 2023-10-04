@@ -13,8 +13,8 @@
  * @version July 2000
  */
 public class PointCP2modT extends PointCP5T
-{	
-  
+{
+
   //Constructors ******************************************************
 
   /**
@@ -37,34 +37,34 @@ public class PointCP2modT extends PointCP5T
     typeCoord = type;
   }
 
-  
+
   //Instance methods **************************************************
- 
- 
+
+
   public double getX()
-  { 
+  {
     return (Math.cos(Math.toRadians(yOrTheta)) * xOrRho);
   }
-  
+
   public double getY()
   {
     return (Math.sin(Math.toRadians(yOrTheta)) * xOrRho);
   }
-  
+
   public double getRho()
   {
     return xOrRho;
   }
-  
+
   public double getTheta()
   {
     return yOrTheta;
   }
-  
-	
+
+
   /**
    * Converts Cartesian coordinates to Polar coordinates.
-   * @return 
+   * @return
    */
   public void convertStorageToPolar()
   {
@@ -74,14 +74,14 @@ public class PointCP2modT extends PointCP5T
       double temp = getRho();
       yOrTheta = getTheta();
       xOrRho = temp;
-      
+
       typeCoord = 'P';  //Change coord type identifier
     }
   }
 
   /**
    * Converts Polar coordinates to Cartesian coordinates.
-   * @return 
+   * @return
    */
   public void convertStorageToCartesian()
   {
@@ -91,11 +91,11 @@ public class PointCP2modT extends PointCP5T
       double temp = getX();
       yOrTheta = getY();
       xOrRho = temp;
-   
+
       typeCoord = 'C';  //Change coord type identifier
     }
   }
-  
+
   /**
    * Calculates the distance in between two points using the Pythagorean
    * theorem  (C ^ 2 = A ^ 2 + B ^ 2). Not needed until E2.30.
@@ -110,7 +110,7 @@ public class PointCP2modT extends PointCP5T
     // will be squared later.
     double deltaX = getX() - pointB.getX();
     double deltaY = getY() - pointB.getY();
-    
+
     return Math.sqrt((Math.pow(deltaX, 2) + Math.pow(deltaY, 2)));
   }
 
@@ -127,7 +127,7 @@ public class PointCP2modT extends PointCP5T
     double radRotation = Math.toRadians(rotation);
     double X = getX();
     double Y = getY();
-        
+
     return new PointCP2modT('C',
       (Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y),
       (Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y));

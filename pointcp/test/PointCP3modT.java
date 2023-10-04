@@ -14,6 +14,26 @@
  */
 public class PointCP3modT extends PointCP5T
 {
+  //Instance variables ************************************************
+
+  /**
+   * Contains C(artesian) or P(olar) to identify the type of
+   * coordinates that are being dealt with.
+   */
+  private char typeCoord;
+
+  /**
+   * Contains the current value of X or RHO depending on the type
+   * of coordinates.
+   */
+  private double xOrRho;
+
+  /**
+   * Contains the current value of Y or THETA value depending on the
+   * type of coordinates.
+   */
+  private double yOrTheta;
+
 
   //Constructors ******************************************************
 
@@ -26,46 +46,46 @@ public class PointCP3modT extends PointCP5T
         throw new IllegalArgumentException();
     }
     else if (type == 'C'){
-        this.xOrRho = xOrRho; 
+        this.xOrRho = xOrRho;
         this.yOrTheta = yOrTheta;
     }
     else{ //if type is Polar, convert to cartesian
         this.xOrRho = Math.cos(Math.toRadians(yOrTheta)) * xOrRho;
         this.yOrTheta = Math.sin(Math.toRadians(yOrTheta)) * xOrRho;
-        
+
     }
     typeCoord = type;
   }
-	
-  
+
+
   //Instance methods **************************************************
- 
- 
+
+
   public double getX()
   {
     return xOrRho;
   }
-  
+
   public double getY()
   {
     return yOrTheta;
-  
+
   }
-  
+
   public double getRho()
   {
     return (Math.sqrt(Math.pow(xOrRho, 2) + Math.pow(yOrTheta, 2)));
   }
-  
+
   public double getTheta()
   {
     return Math.toDegrees(Math.atan2(yOrTheta, xOrRho));
   }
-  
-	
+
+
   /**
    * Converts Cartesian coordinates to Polar coordinates.
-   * @return 
+   * @return
    */
   public void convertStorageToPolar()
   {
@@ -75,15 +95,14 @@ public class PointCP3modT extends PointCP5T
       double temp = getRho();
       yOrTheta = getTheta();
       xOrRho = temp;
-      
+
       typeCoord = 'P';  //Change coord type identifier
     }
-
   }
-	
+
   /**
    * Converts Polar coordinates to Cartesian coordinates.
-   * @return 
+   * @return
    */
   public void convertStorageToCartesian()
   {
@@ -93,10 +112,9 @@ public class PointCP3modT extends PointCP5T
       double temp = getX();
       yOrTheta = getY();
       xOrRho = temp;
-   
+
       typeCoord = 'C';	//Change coord type identifier
     }
-
   }
 
   /**
@@ -113,7 +131,7 @@ public class PointCP3modT extends PointCP5T
     // will be squared later.
     double deltaX = getX() - pointB.getX();
     double deltaY = getY() - pointB.getY();
-    
+
     return Math.sqrt((Math.pow(deltaX, 2) + Math.pow(deltaY, 2)));
   }
 
@@ -130,7 +148,7 @@ public class PointCP3modT extends PointCP5T
     double radRotation = Math.toRadians(rotation);
     double X = getX();
     double Y = getY();
-        
+
     return new PointCP3modT('C',
       (Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y),
       (Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y));

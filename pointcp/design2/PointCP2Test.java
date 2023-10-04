@@ -5,7 +5,7 @@
 import java.io.*;
 
 /**
- * This class prompts the user for a set of coordinates, and then 
+ * This class prompts the user for a set of coordinates, and then
  * converts them from polar to cartesian or vice-versa.
  *
  * @author Fran&ccedil;ois B&eacute;langer
@@ -20,7 +20,7 @@ public class PointCP2Test
   /**
    * This method is responsible for the creation of the PointCP
    * object.  This can be done in two ways; the first, by using the
-   * command line and running the program using <code> java 
+   * command line and running the program using <code> java
    * PointCPTest &lt;coordtype (c/p)&gt; &lt;X/RHO&gt; &lt;Y/THETA&gt;
    * </code> and the second by getting the program to prompt the user.
    * If the user does not enter a valid sequence at the command line,
@@ -42,8 +42,8 @@ public class PointCP2Test
     // If he did not, prompt the user for them.
     try
     {
-      point = new PointCP2(args[0].toUpperCase().charAt(0), 
-        Double.valueOf(args[1]).doubleValue(), 
+      point = new PointCP2(args[0].toUpperCase().charAt(0),
+        Double.valueOf(args[1]).doubleValue(),
         Double.valueOf(args[2]).doubleValue());
     }
     catch(Exception e)
@@ -64,8 +64,10 @@ public class PointCP2Test
       }
     }
     System.out.println("\nYou entered:\n" + point);
-    point.convertStorageToPolar(); //Convert to Polar
-    System.out.println("\nAfter asking to store as Polar:\n" + point); //Print out Polar
+    point.convertStorageToCartesian();
+    System.out.println("\nAfter asking to store as Cartesian:\n" + point);
+    point.convertStorageToPolar();
+    System.out.println("\nAfter asking to store as Polar:\n" + point);
   }
 
   /**
@@ -73,7 +75,7 @@ public class PointCP2Test
    * it is valid.  When the input is valid, it returns a PointCP
    * object.
    *
-   * @return A PointCP constructed using information obtained 
+   * @return A PointCP constructed using information obtained
    *         from the user.
    * @throws IOException If there is an error getting input from
    *         the user.
@@ -83,7 +85,7 @@ public class PointCP2Test
     byte[] buffer = new byte[1024];  //Buffer to hold byte input
     boolean isOK = false;  // Flag set if input correct
     String theInput = "";  // Input information
-    
+
     //Information to be passed to the constructor
     char coordType = 'A'; // Temporary default, to be set to P or C
     double a = 0.0;
@@ -95,7 +97,7 @@ public class PointCP2Test
       while (!(isOK))
       {
         isOK = true;  //flag set to true assuming input will be valid
-          
+
         // Prompt the user
         if (i == 0) // First argument - type of coordinates
         {
@@ -104,28 +106,28 @@ public class PointCP2Test
         }
         else // Second and third arguments
         {
-          System.out.print("Enter the value of " 
-            + (coordType == 'C' 
+          System.out.print("Enter the value of "
+            + (coordType == 'C'
               ? (i == 1 ? "X " : "Y ")
-              : (i == 1 ? "Rho " : "Theta ")) 
+              : (i == 1 ? "Rho " : "Theta "))
             + "using a decimal point(.): ");
         }
 
-        // Get the user's input      
-       
+        // Get the user's input
+
         // Initialize the buffer before we read the input
         for(int k=0; k<1024; k++)
-        	buffer[k] = '\u0020';        
-             
+        	buffer[k] = '\u0020';
+
         System.in.read(buffer);
         theInput = new String(buffer).trim();
-        
+
         // Verify the user's input
         try
         {
           if (i == 0) // First argument -- type of coordinates
           {
-            if (!((theInput.toUpperCase().charAt(0) == 'C') 
+            if (!((theInput.toUpperCase().charAt(0) == 'C')
               || (theInput.toUpperCase().charAt(0) == 'P')))
             {
               //Invalid input, reset flag so user is prompted again

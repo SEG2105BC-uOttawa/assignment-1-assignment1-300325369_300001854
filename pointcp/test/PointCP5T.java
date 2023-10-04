@@ -14,23 +14,23 @@
  */
 public abstract class PointCP5T
 {
+    protected char typeCoord;
+    protected double xOrRho;
+    protected double yOrTheta;
+
     public abstract double getX();
     public abstract double getY();
     public abstract double getRho();
     public abstract double getTheta();
 
-    protected char typeCoord;
-    protected double xOrRho;
-    protected double yOrTheta;
-  
     public abstract double getDistance(PointCP5T pointB);
-
-    
-
+    public abstract void convertStorageToPolar();
+    public abstract void convertStorageToCartesian();
+    public abstract PointCP5T rotatePoint(double rotation);
 
   public String toString()
   {
-    return "Stored as " + (typeCoord == 'C' 
+    return "Stored as " + (typeCoord == 'C'
        ? "Cartesian  (" + getX() + "," + getY() + ")"
        : "Polar [" + getRho() + "," + getTheta() + "]") + "\n";
   }
