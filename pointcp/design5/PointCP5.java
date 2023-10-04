@@ -17,19 +17,19 @@ public abstract class PointCP5
   protected char typeCoord;
   protected double xOrRho;
   protected double yOrTheta;
-  
+
   public abstract double getX();
   public abstract double getY();
   public abstract double getRho();
   public abstract double getTheta();
-  
-  public abstract PointCP5 convertStorageToPolar();
-  public abstract PointCP5 convertStorageToCartesian();
+
+  public abstract void convertStorageToPolar();
+  public abstract void convertStorageToCartesian();
   public abstract double getDistance(PointCP5 pointB);
 
   public String toString()
   {
-    return "Stored as " + (typeCoord == 'C' 
+    return "Stored as " + (typeCoord == 'C'
        ? "Cartesian  (" + getX() + "," + getY() + ")"
        : "Polar [" + getRho() + "," + getTheta() + "]") + "\n";
   }
