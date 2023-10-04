@@ -7,6 +7,9 @@ import java.util.Arrays;
  */
 public class PerformanceTest{
 
+    // global constant for iterations
+    public static final int MAX_ITERATIONS = 10;
+
     public static void main(String[] args){
 
         Integer arraySize = 10_000_000; //change to adjust time taken to run
@@ -36,44 +39,41 @@ public class PerformanceTest{
 
 		//arrays to store times 10 iterations
         // design 1
-		long[] pointCP1Instantiating    = new long[10];
-		long[] pointCPX                 = new long[10];
-		long[] pointCPY                 = new long[10];
-		long[] pointCPRho               = new long[10];
-		long[] pointCPTheta             = new long[10];
-		long[] pointCPDistance          = new long[10];
-		long[] pointCPRotate            = new long[10];
+		long[] pointCP1Instantiating    = new long[MAX_ITERATIONS];
+		long[] pointCPX                 = new long[MAX_ITERATIONS];
+		long[] pointCPY                 = new long[MAX_ITERATIONS];
+		long[] pointCPRho               = new long[MAX_ITERATIONS];
+		long[] pointCPTheta             = new long[MAX_ITERATIONS];
+		long[] pointCPDistance          = new long[MAX_ITERATIONS];
+		long[] pointCPRotate            = new long[MAX_ITERATIONS];
         // design 2
-		long[] pointCP2Instantiating    = new long[10];
-		long[] pointCP2X                = new long[10];
-		long[] pointCP2Y                = new long[10];
-		long[] pointCP2Rho              = new long[10];
-		long[] pointCP2Theta            = new long[10];
-		long[] pointCP2Distance         = new long[10];
-		long[] pointCP2Rotate           = new long[10];
+		long[] pointCP2Instantiating    = new long[MAX_ITERATIONS];
+		long[] pointCP2X                = new long[MAX_ITERATIONS];
+		long[] pointCP2Y                = new long[MAX_ITERATIONS];
+		long[] pointCP2Rho              = new long[MAX_ITERATIONS];
+		long[] pointCP2Theta            = new long[MAX_ITERATIONS];
+		long[] pointCP2Distance         = new long[MAX_ITERATIONS];
+		long[] pointCP2Rotate           = new long[MAX_ITERATIONS];
         // design 3
-		long[] pointCP3Instantiating    = new long[10];
-		long[] pointCP3X                = new long[10];
-		long[] pointCP3Y                = new long[10];
-		long[] pointCP3Rho              = new long[10];
-		long[] pointCP3Theta            = new long[10];
-		long[] pointCP3Distance         = new long[10];
-		long[] pointCP3Rotate           = new long[10];
+		long[] pointCP3Instantiating    = new long[MAX_ITERATIONS];
+		long[] pointCP3X                = new long[MAX_ITERATIONS];
+		long[] pointCP3Y                = new long[MAX_ITERATIONS];
+		long[] pointCP3Rho              = new long[MAX_ITERATIONS];
+		long[] pointCP3Theta            = new long[MAX_ITERATIONS];
+		long[] pointCP3Distance         = new long[MAX_ITERATIONS];
+		long[] pointCP3Rotate           = new long[MAX_ITERATIONS];
         // design 5
-		long[] pointCP5Instantiating    = new long[10];
-		long[] pointCP5X                = new long[10];
-		long[] pointCP5Y                = new long[10];
-		long[] pointCP5Rho              = new long[10];
-		long[] pointCP5Theta            = new long[10];
-		long[] pointCP5Distance         = new long[10];
-		long[] pointCP5Rotate           = new long[10];
-
-        // change iterations to get more accurate results
-        Integer iterations = 10;
+		long[] pointCP5Instantiating    = new long[MAX_ITERATIONS];
+		long[] pointCP5X                = new long[MAX_ITERATIONS];
+		long[] pointCP5Y                = new long[MAX_ITERATIONS];
+		long[] pointCP5Rho              = new long[MAX_ITERATIONS];
+		long[] pointCP5Theta            = new long[MAX_ITERATIONS];
+		long[] pointCP5Distance         = new long[MAX_ITERATIONS];
+		long[] pointCP5Rotate           = new long[MAX_ITERATIONS];
 
         // run each test 10 times
-		for(int j = 0; j < iterations; j++){
-			System.out.println("Starting iteration: " + j + " of " + iterations);
+		for(int j = 0; j < MAX_ITERATIONS; j++){
+			System.out.println("Starting iteration: " + (j+1) + " of " + MAX_ITERATIONS);
 
             /*
              * Testing Design 1
