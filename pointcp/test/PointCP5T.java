@@ -24,9 +24,9 @@ public abstract class PointCP5T
     public abstract double getTheta();
 
     public abstract double getDistance(PointCP5T pointB);
-
-
-
+    public abstract void convertStorageToPolar();
+    public abstract void convertStorageToCartesian();
+    public abstract PointCP5T rotatePoint(double rotation);
 
   public String toString()
   {
