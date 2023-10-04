@@ -14,27 +14,7 @@
  */
 public class PointCP3mod extends PointCP5
 {
-  //Instance variables ************************************************
 
-  /**
-   * Contains C(artesian) or P(olar) to identify the type of
-   * coordinates that are being dealt with.
-   */
-  private char typeCoord;
-  
-  /**
-   * Contains the current value of X or RHO depending on the type
-   * of coordinates.
-   */
-  private double xOrRho;
-  
-  /**
-   * Contains the current value of Y or THETA value depending on the
-   * type of coordinates.
-   */
-  private double yOrTheta;
-	
-  
   //Constructors ******************************************************
 
   /**
@@ -87,7 +67,7 @@ public class PointCP3mod extends PointCP5
    * Converts Cartesian coordinates to Polar coordinates.
    * @return 
    */
-  public PointCP5 convertStorageToPolar()
+  public void convertStorageToPolar()
   {
     if(typeCoord != 'P')
     {
@@ -98,14 +78,14 @@ public class PointCP3mod extends PointCP5
       
       typeCoord = 'P';  //Change coord type identifier
     }
-    return null;
+
   }
 	
   /**
    * Converts Polar coordinates to Cartesian coordinates.
    * @return 
    */
-  public PointCP5 convertStorageToCartesian()
+  public void convertStorageToCartesian()
   {
     if(typeCoord != 'C')
     {
@@ -116,7 +96,6 @@ public class PointCP3mod extends PointCP5
    
       typeCoord = 'C';	//Change coord type identifier
     }
-    return null;
   }
 
   /**

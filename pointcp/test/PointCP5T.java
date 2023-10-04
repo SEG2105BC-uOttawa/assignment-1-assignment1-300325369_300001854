@@ -25,10 +25,6 @@ public abstract class PointCP5T
   
     public abstract double getDistance(PointCP5T pointB);
 
-    public abstract PointCP5T convertStorageToPolar();
-
-    public abstract PointCP5T convertStorageToCartesian();
-
     
 
 

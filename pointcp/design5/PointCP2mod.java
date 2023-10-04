@@ -14,7 +14,7 @@
  */
 public class PointCP2mod extends PointCP5
 {	
-  
+
   //Constructors ******************************************************
 
   /**
@@ -66,7 +66,7 @@ public class PointCP2mod extends PointCP5
    * Converts Cartesian coordinates to Polar coordinates.
    * @return 
    */
-  public PointCP5 convertStorageToPolar()
+  public void convertStorageToPolar()
   {
     if(typeCoord != 'P')
     {
@@ -77,14 +77,14 @@ public class PointCP2mod extends PointCP5
       
       typeCoord = 'P';  //Change coord type identifier
     }
-    return null;
+
   }
 
   /**
    * Converts Polar coordinates to Cartesian coordinates.
    * @return 
    */
-  public PointCP5 convertStorageToCartesian()
+  public void convertStorageToCartesian()
   {
     if(typeCoord != 'C')
     {
@@ -95,7 +95,6 @@ public class PointCP2mod extends PointCP5
    
       typeCoord = 'C';  //Change coord type identifier
     }
-    return null;
   }
   
   /**
