@@ -14,23 +14,18 @@
  */
 public abstract class PointCP5
 {
-    public abstract double getX();
-    public abstract double getY();
-    public abstract double getRho();
-    public abstract double getTheta();
-
-    protected char typeCoord;
-    protected double xOrRho;
-    protected double yOrTheta;
+  protected char typeCoord;
+  protected double xOrRho;
+  protected double yOrTheta;
   
-    public abstract double getDistance(PointCP5 pointB);
-
-    public abstract PointCP5 convertStorageToPolar();
-
-    public abstract PointCP5 convertStorageToCartesian();
-
-    
-
+  public abstract double getX();
+  public abstract double getY();
+  public abstract double getRho();
+  public abstract double getTheta();
+  
+  public abstract PointCP5 convertStorageToPolar();
+  public abstract PointCP5 convertStorageToCartesian();
+  public abstract double getDistance(PointCP5 pointB);
 
   public String toString()
   {
@@ -38,5 +33,4 @@ public abstract class PointCP5
        ? "Cartesian  (" + getX() + "," + getY() + ")"
        : "Polar [" + getRho() + "," + getTheta() + "]") + "\n";
   }
-
 }

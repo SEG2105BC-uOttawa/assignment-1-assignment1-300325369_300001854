@@ -32,7 +32,6 @@ public class PointCP3mod extends PointCP5
     else{ //if type is Polar, convert to cartesian
         this.xOrRho = Math.cos(Math.toRadians(yOrTheta)) * xOrRho;
         this.yOrTheta = Math.sin(Math.toRadians(yOrTheta)) * xOrRho;
-        
     }
     typeCoord = type;
   }

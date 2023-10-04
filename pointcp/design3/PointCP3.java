@@ -52,7 +52,6 @@ public class PointCP3
     else{ //if type is Polar, convert to cartesian
         this.xOrRho = Math.cos(Math.toRadians(yOrTheta)) * xOrRho;
         this.yOrTheta = Math.sin(Math.toRadians(yOrTheta)) * xOrRho;
-        
     }
     typeCoord = type;
   }
