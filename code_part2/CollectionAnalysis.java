@@ -3,54 +3,11 @@ import java.util.*;
 /*
  * This program compares the time taken to construct a list, iterate through the list and sum the elements
  * between ArrayList, Vector and ordinary array
- * 
+ *
  * Part (a) compares the time taken to construct the list
  * Part (b) compares the time taken to iterate through the list and sum the elements
  */
 public class CollectionAnalysis {
-
-    /*
-     * Main method to run part a and b 
-     * 
-     */
-    public static void main(String[] args) {
-        int n = 100000000; //number of elements in the list (can affect the time taken to run the program)
-
-        // (a)
-        List<Integer> arrayList = new ArrayList<>(); // instantiate ArrayList
-        long arrayListConstructionTime = constructList(arrayList, n); // call constructList method
-
-        List<Integer> vector = new Vector<>(); // instantiate Vector
-        long vectorConstructionTime = constructList(vector, n); // call constructList method
-
-        int[] array = new int[n]; // instantiate ordinary array
-        long arrayConstructionTime = constructArray(array, n); // call constructArray method
-
-        
-        // Part (b)
-        long arrayListIterationTime = iterateAndSumArrayList(arrayList);
-        long vectorIterationTime = iterateAndSumVector(vector); 
-        long arrayIterationTime = loopAndSumArray(array);
-        
-       
-        System.out.println("---------------------------------------------------------------------------------------");
-        System.out.println("| Collection Type     | Construction Time (ms) | Iteration Time (ms) |     Sum     |");
-        System.out.println("---------------------------------------------------------------------------------------");
-
-        // Print ArrayList data
-        System.out.printf("| %-19s | %21d | %19d | %11d |\n", "ArrayList", arrayListConstructionTime, arrayListIterationTime, iterateAndSumArrayList(arrayList));
-        System.out.println("---------------------------------------------------------------------------------------");
-
-        // Print Vector data
-        System.out.printf("| %-19s | %21d | %19d | %11d |\n", "Vector", vectorConstructionTime, vectorIterationTime, iterateAndSumVector(vector));
-        System.out.println("---------------------------------------------------------------------------------------");
-
-        // Print Array data
-        System.out.printf("| %-19s | %21d | %19d | %11d |\n", "Ordinary Array", arrayConstructionTime, arrayIterationTime, loopAndSumArray(array));
-        System.out.println("---------------------------------------------------------------------------------------");
-
-
-    }
 
     /*
      * Populates the list with random integers from 0 to 9 (for ArrayList and Vector)
@@ -59,7 +16,7 @@ public class CollectionAnalysis {
      * @return the time taken to populate the list
      */
     private static long constructList (List<Integer> list, int n) { //method for both ArrayList and Vector
-        Random random = new Random(); 
+        Random random = new Random();
         long start = System.currentTimeMillis();
         for (int i = 0; i < n; i++) {
             list.add(random.nextInt(10));
@@ -87,10 +44,10 @@ public class CollectionAnalysis {
      * @param list to be iterated through
      * @return the time taken to iterate through the ArrayList and sum the elements
      */
-    private static long iterateAndSumArrayList(List<Integer> list) { 
+    private static long iterateAndSumArrayList(List<Integer> list) {
         long start = System.currentTimeMillis();
         long sum = 0;
-        Iterator<Integer> iterator = list.iterator(); 
+        Iterator<Integer> iterator = list.iterator();
         while (iterator.hasNext()) {
             sum += iterator.next();
         }
@@ -124,10 +81,47 @@ public class CollectionAnalysis {
         long sum = 0;
         for (int i = 0; i < array.length; i++) {
             sum += array[i];
-        } 
+        }
         System.out.println("Array Sum: " + sum);
         return System.currentTimeMillis() - start;
     }
 
-    
+    /*
+     * Main method to run part a and b
+     *
+     */
+    public static void main(String[] args) {
+        int n = 100_000_000; //number of elements in the list (can affect the time taken to run the program)
+
+        // (a)
+        List<Integer> arrayList         = new ArrayList<>(); // instantiate ArrayList
+        long arrayListConstructionTime  = constructList(arrayList, n); // call constructList method
+
+        List<Integer> vector            = new Vector<>(); // instantiate Vector
+        long vectorConstructionTime     = constructList(vector, n); // call constructList method
+
+        int[] array                     = new int[n]; // instantiate ordinary array
+        long arrayConstructionTime      = constructArray(array, n); // call constructArray method
+
+        // Part (b)
+        long arrayListIterationTime = iterateAndSumArrayList(arrayList);
+        long vectorIterationTime    = iterateAndSumVector(vector);
+        long arrayIterationTime     = loopAndSumArray(array);
+
+        System.out.println("---------------------------------------------------------------------------------------");
+        System.out.println("| Collection Type     | Construction Time (ms) | Iteration Time (ms) |     Sum     |");
+        System.out.println("---------------------------------------------------------------------------------------");
+
+        // Print ArrayList data
+        System.out.printf("| %-19s | %21d | %19d | %11d |\n", "ArrayList", arrayListConstructionTime, arrayListIterationTime, iterateAndSumArrayList(arrayList));
+        System.out.println("---------------------------------------------------------------------------------------");
+
+        // Print Vector data
+        System.out.printf("| %-19s | %21d | %19d | %11d |\n", "Vector", vectorConstructionTime, vectorIterationTime, iterateAndSumVector(vector));
+        System.out.println("---------------------------------------------------------------------------------------");
+
+        // Print Array data
+        System.out.printf("| %-19s | %21d | %19d | %11d |\n", "Ordinary Array", arrayConstructionTime, arrayIterationTime, loopAndSumArray(array));
+        System.out.println("---------------------------------------------------------------------------------------");
+    }
 }
